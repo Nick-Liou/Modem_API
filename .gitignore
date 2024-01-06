@@ -1,0 +1,4 @@
+*.png
+__pycache__/
+geckodriver.log
+credentials.json
