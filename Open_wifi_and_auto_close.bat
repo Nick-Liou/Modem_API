@@ -2,7 +2,7 @@
 @echo off
 
 
-rem Set the title to indicate that the command prompt window is configured for ABC software.
+rem Set the title to the command prompt window.
 title Command shell window to Open Wifi and auto-close it 
 
 
