@@ -305,7 +305,7 @@ class Modem():
       self.toggle_Wifi(sorted_wifi_to_turn_off , print_results = print_results  )
 
 
-  def wait_to_close_wifi(self , polling_period_min = 2 , inactive_periods = 2 , print_results = False  ):
+  def wait_to_close_wifi(self , polling_period_min = 2 , inactive_periods = 2 , print_results = False , print_time = False ):
 
     print("\nAuto close wifi mode activated.")
 
@@ -313,6 +313,10 @@ class Modem():
     # While none is connected and at least inactive_periods*polling_period_min  min have passed turn off all wifi 
     while( True ):
       time.sleep(polling_period_min*60)
+      if print_time:
+        # Print the current time
+        print(time.strftime("%H:%M:%S"))
+        
       print(f"Polling connected devices (waiting to turn off) , previous inactive periods:{counter}")
       self.check_connected_devices(print_results = print_results)     
 

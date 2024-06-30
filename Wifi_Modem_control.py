@@ -5,6 +5,9 @@ import time
 if __name__ == "__main__":
 
   print("Program is running")
+
+  # Print the current time
+  print(time.strftime("%H:%M:%S"))
   
   obj = Modem() 
   obj.setup_method(headless = True)
@@ -31,7 +34,7 @@ if __name__ == "__main__":
 
   while tries > 0 :
     try:
-      obj.wait_to_close_wifi(polling_period_min = 2 ,inactive_periods = 2, print_results = True)
+      obj.wait_to_close_wifi(polling_period_min = 2 ,inactive_periods = 2, print_results = True, print_time = True)
       break
     except Exception as error:
       tries -= 1 
