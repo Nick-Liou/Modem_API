@@ -2,13 +2,15 @@ from modem import Modem
 import time
   
 
-if __name__ == "__main__":
 
+
+def main():
+  
   print("Program is running")
 
   # Print the current time
   print(time.strftime("%H:%M:%S"))
-  
+
   obj = Modem() 
   obj.setup_method(headless = True)
 
@@ -24,17 +26,25 @@ if __name__ == "__main__":
   obj.turn_wifi_off(["5G", "Guest 2.4G", "Guest 5G"],print_results=True)
 
 
-  try:
-    obj.check_wifi_status(True) 
-    obj.check_connected_devices(True)
-  except:
-    pass
+  obj.check_wifi_status(True) 
+  obj.check_connected_devices(True)
 
+
+  obj.wait_to_close_wifi(polling_period_min = 2 ,inactive_periods = 2, print_results = True, print_time = True)
+
+  obj.teardown_method()
+
+
+
+
+if __name__ == "__main__":
+
+  
   tries = 5 
 
   while tries > 0 :
     try:
-      obj.wait_to_close_wifi(polling_period_min = 2 ,inactive_periods = 2, print_results = True, print_time = True)
+      main()
       break
     except Exception as error:
       tries -= 1 
@@ -43,10 +53,3 @@ if __name__ == "__main__":
       time.sleep(2)
       print(f"\n\n Starting again the script tries left {tries}")
 
-
-
-  # exit_delay = 3
-  # print(f"\n\nProgram ended it will exit in {exit_delay} sec")
-  # time.sleep(exit_delay)
-
-  obj.teardown_method()
